@@ -1,4 +1,4 @@
-package address.capture.controllers;
+package address.capture.services;
 
 import address.capture.entities.AddressEntity;
 import address.capture.entities.CountryEntity;
@@ -85,13 +85,13 @@ class AddressServiceTest {
         List<ProvinceEntity> entities = new ArrayList<>();
         entities.add(entity.getProvince());
 
-        when(modelMapper.map(any(Address.class),any())).thenReturn(entity);
+        when(modelMapper.map(any(Address.class), any())).thenReturn(entity);
 
-        when(modelMapper.map(any(AddressEntity.class),any())).thenReturn(customerAddress);
+        when(modelMapper.map(any(AddressEntity.class), any())).thenReturn(customerAddress);
 
         when(countryRepository.findById("ZA")).thenReturn(Optional.of(entity.getCountry()));
 
-        when(provinceRepository.findFirstByCountryCodeAndProvinceCode("ZA","GP")).thenReturn(entities);
+        when(provinceRepository.findFirstByCountryCodeAndProvinceCode("ZA", "GP")).thenReturn(entities);
 
         when(addressRepository.save(any())).thenReturn(entity);
 
@@ -104,43 +104,37 @@ class AddressServiceTest {
 
         assertNotNull(result);
 
-        assertEquals(result.getAddressId(), 1);
+        assertEquals(1, result.getAddressId());
 
     }
 
     @Test
-    void testCountryNotFound()
-    {
+    void testCountryNotFound() {
 
     }
 
     @Test
-    void testProvinceNotFound()
-    {
+    void testProvinceNotFound() {
 
     }
 
     @Test
-    void testUpdateAddress()
-    {
+    void testUpdateAddress() {
 
     }
 
     @Test
-    void testDeleteAddress()
-    {
+    void testDeleteAddress() {
 
     }
 
     @Test
-    void testFindAddress()
-    {
+    void testFindAddress() {
 
     }
 
     @Test
-    void listAddresses()
-    {
+    void listAddresses() {
 
     }
 
