@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
             AddressNotFoundException exception) {
 
         Set<String> result = new HashSet<>();
-        result.add(String.format("Address %s not found ", exception.getAddressId()));
+        result.add(String.format("Address %s not found", exception.getAddressId()));
 
         ResponseDTO<Object> responseDTO = new ResponseDTO<>();
         responseDTO.setErrors(result);

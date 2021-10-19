@@ -1,12 +1,13 @@
 package address.capture.models;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class Province
-{
+@AllArgsConstructor
+@NoArgsConstructor
+public class Province {
 
     private String countryCode;
 

@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Tag(name = "Managing Countries Api Controller")
+@Tag(name = "Country REST Api Controller")
 @RequestMapping(path = "/country", produces = "application/json")
 public interface CountryControllerInterface {
 
     @Operation(description = "List Countries alphabetically")
     @GetMapping("/list")
     ResponseEntity<ResponseDTO<List<Country>>> listCountries(@RequestParam(name = "sort", required = false, defaultValue = "asc") String sort);
-
-
 }

@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class AddressControllerImpl implements AddressControllerInterface {
 
-    protected final AddressService addressService;
+    public final AddressService addressService;
 
     public AddressControllerImpl(AddressService addressService) {
         this.addressService = addressService;
@@ -55,9 +55,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
 
     @Override
     public ResponseEntity<ResponseDTO<Integer>> deleteCustomerAddress(Integer addressId) {
-
         addressService.deleteAddress(addressId);
-
         var responseBody = new ResponseDTO<>(null, addressId);
         return ResponseEntity.ok(responseBody);
     }

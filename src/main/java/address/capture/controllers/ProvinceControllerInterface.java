@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@Tag(name = "Managing Province Api Controller")
+@Tag(name = "Country REST Api Controller")
 @RequestMapping(path = "/province", produces = "application/json")
 public interface ProvinceControllerInterface {
 
-    @Operation(description = "Find provinces for specified country")
+    @Operation(description = "Find list of provinces for specified country")
     @GetMapping("/list")
     ResponseEntity<ResponseDTO<List<Province>>> listProvinces(@PathVariable String countryCode);
 

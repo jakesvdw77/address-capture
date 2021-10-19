@@ -8,7 +8,7 @@
 | Application Version       | 1.0-SNAPSHOT     |
 | Org / Domain              | Private           |
 | Default Port              | 8080    |
-| Swagger Docs              | [Link](http://localhost:8080/swagger-ui/index.html)    |
+| Swagger Docs              | [Link](http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/)    |
 | GIT Project               | [Link](https://github.com/jakesvdw77/address-capture)
 |
 

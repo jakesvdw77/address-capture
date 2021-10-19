@@ -6,11 +6,11 @@ import address.capture.models.ResponseDTO;
 import address.capture.services.ProvinceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Service
+@RestController
 public class ProvinceControllerImpl implements ProvinceControllerInterface {
 
     protected final ProvinceService provinceService;
