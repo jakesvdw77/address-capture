@@ -1,13 +1,10 @@
-package entities;
-
-import lombok.Data;
+package address.capture.entities;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
-@Data
+//@Entity
+//@Data
 public class Country
 {
     @Id

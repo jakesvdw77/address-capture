@@ -1,4 +1,4 @@
-package models;
+package address.capture.models;
 
 import lombok.Data;
 

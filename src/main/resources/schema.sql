@@ -1,8 +1,12 @@
 DROP TABLE IF EXISTS address;
 
 CREATE TABLE address (
-                         id INT AUTO_INCREMENT  PRIMARY KEY,
-                         first_name VARCHAR(250) NOT NULL,
-                         last_name VARCHAR(250) NOT NULL,
-                         career VARCHAR(250) DEFAULT NULL
+                         address_id INT AUTO_INCREMENT  PRIMARY KEY,
+                         line1 VARCHAR(250) NULL,
+                         line2 VARCHAR(250)  NULL,
+                         city VARCHAR(250)  NULL,
+                         province INT NOT NULL,
+                         country INT  NOT NULL
 );
+
+

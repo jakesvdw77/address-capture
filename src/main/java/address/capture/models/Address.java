@@ -1,11 +1,11 @@
-package models;
+package address.capture.models;
 
-import entities.Province;
-import entities.Country;
+import address.capture.entities.Province;
+import address.capture.entities.Country;
+import lombok.Data;
 
+@Data
 public class Address {
-
-    private int addressId;
 
     private String line1;
 

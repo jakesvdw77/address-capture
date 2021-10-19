@@ -1,13 +1,11 @@
-package entities;
-
-import lombok.Data;
+package address.capture.entities;
 
 import javax.persistence.*;
 
-@Data
-@Table(name = "province")
-@Entity
-@IdClass(ProvinceId.class)
+//@Data
+//@Table(name = "province")
+//@Entity
+//@IdClass(ProvinceId.class)
 public class Province
 {
 

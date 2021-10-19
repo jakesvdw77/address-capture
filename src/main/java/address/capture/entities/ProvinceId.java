@@ -1,4 +1,4 @@
-package entities;
+package address.capture.entities;
 
 import lombok.Data;
 

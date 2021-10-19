@@ -1,4 +1,4 @@
-package entities;
+package address.capture.entities;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "address")
-public class Address {
+public class AddressEntity {
     @Id
     @Column(name = "address_id")
     private int addressId;
@@ -18,10 +18,11 @@ public class Address {
 
     private String city;
 
-    @OneToOne(mappedBy = "")
-    private Province province;
-
-    @OneToOne(mappedBy = "")
-    private Country country;
+//
+//    @OneToOne(mappedBy = "")
+//    private Province province;
+//
+//    @OneToOne(mappedBy = "")
+//    private Country country;
 
 }
