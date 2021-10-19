@@ -1,5 +1,6 @@
-package address.capture.controllers;
+package address.capture.controllers.impl;
 
+import address.capture.controllers.ProvinceControllerInterface;
 import address.capture.models.Province;
 import address.capture.models.ResponseDTO;
 import address.capture.services.ProvinceService;

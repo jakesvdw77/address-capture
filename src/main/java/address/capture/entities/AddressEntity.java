@@ -27,7 +27,7 @@ public class AddressEntity {
             @JoinColumn(name = "province_code", referencedColumnName = "province_code"),
             @JoinColumn(name = "country_code", referencedColumnName = "country_code")
     })
-    private Province province;
+    private ProvinceEntity province;
 
 
     @OneToOne

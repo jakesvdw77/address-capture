@@ -1,5 +1,6 @@
-package address.capture.controllers;
+package address.capture.controllers.impl;
 
+import address.capture.controllers.AddressControllerInterface;
 import address.capture.models.Address;
 import address.capture.models.CustomerAddress;
 import address.capture.models.ResponseDTO;

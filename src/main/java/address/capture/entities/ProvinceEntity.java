@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(ProvinceId.class)
 @NoArgsConstructor
-public class Province
+public class ProvinceEntity
 {
 
     @Id

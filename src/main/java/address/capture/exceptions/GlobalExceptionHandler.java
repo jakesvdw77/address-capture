@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ProvinceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ResponseEntity<Object> handleProvinceNotFoundException(
             ProvinceNotFoundException exception) {
 
@@ -44,13 +44,13 @@ public class GlobalExceptionHandler {
         responseDTO.setErrors(result);
 
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
 
     }
 
 
     @ExceptionHandler(CountryNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public final ResponseEntity<Object> handleProvinceNotFoundException(
             CountryNotFoundException exception) {
 
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
         responseDTO.setErrors(result);
 
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
 
     }
 
