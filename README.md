@@ -4,12 +4,12 @@
 
 | Info                      | Value             |
 | ---                       | ---               |
-| Application Description   | Address Capture   |
-| Application Version       | `1.0-SNAPSHOT     |
+| Application Description   | Simple Java project for the capturing of address detail.   |
+| Application Version       | 1.0-SNAPSHOT     |
 | Org / Domain              | Private           |
-| OpenAPI Docs              | [Link](openapi.json)    |
 | Default Port              | 8080    |
-| GIT LINK                  | [Link](https://github.com/jakesvdw77/address-capture)
+| Swagger Docs              | [Link](http://localhost:8080/swagger-ui/index.html)    |
+| GIT Project               | [Link](https://github.com/jakesvdw77/address-capture)
 |
 
 
