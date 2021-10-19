@@ -99,12 +99,11 @@ public class AddressServiceImpl implements AddressService {
     public List<CustomerAddress> listAddresses() {
         var addressStream = addressRepository.findAll();
 
-        var addressList = addressStream
+        return addressStream
                 .stream()
                 .map(x -> modelMapper.map(x, CustomerAddress.class))
                 .collect(Collectors.toList());
 
-        return addressList;
     }
 
 }

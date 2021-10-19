@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class CountryNotFoundException extends RuntimeException {
 
-    private String countryCode;
+    private final String countryCode;
 
 }

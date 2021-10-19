@@ -23,12 +23,10 @@ public class ProvinceServiceImpl implements ProvinceService {
     public List<Province> listProvincesByCountry(String countryCode) {
         var provinces = provinceRepository.findAllByCountryCode(countryCode);
 
-        var provinceList = provinces
+        return provinces
                 .stream()
                 .map(x -> modelMapper.map(x, Province.class))
                 .collect(Collectors.toList());
-
-        return provinceList;
     }
 
 
