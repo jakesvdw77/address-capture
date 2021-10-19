@@ -1,6 +1,7 @@
 package address.capture.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -8,8 +9,14 @@ import javax.persistence.*;
 @Table(name = "province")
 @Entity
 @IdClass(ProvinceId.class)
+@NoArgsConstructor
 public class Province
 {
+    public Province(String countryCode, String provinceCode)
+    {
+        this.countryCode = countryCode;
+        this.provinceCode = provinceCode;
+    }
 
     @Id
     @Column(name = "country_code")

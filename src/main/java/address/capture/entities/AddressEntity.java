@@ -1,7 +1,6 @@
 package address.capture.entities;
 
 import lombok.Data;
-import lombok.Generated;
 
 import javax.persistence.*;
 
@@ -23,7 +22,7 @@ public class AddressEntity {
     private String city;
 
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumns(value = {
             @JoinColumn(name = "province_code", referencedColumnName = "province_code"),
             @JoinColumn(name = "country_code", referencedColumnName = "country_code")

@@ -32,4 +32,38 @@ public class GlobalExceptionHandler {
 
     }
 
+    @ExceptionHandler(ProvinceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public final ResponseEntity<Object> handleProvinceNotFoundException(
+            ProvinceNotFoundException exception) {
+
+        Set<String> result = new HashSet<>();
+        result.add(String.format("Province %s not found for country code %s ", exception.getProvinceCode(), exception.getCountryCode()));
+
+        ResponseDTO<Object> responseDTO = new ResponseDTO<>();
+        responseDTO.setErrors(result);
+
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
+
+    }
+
+
+    @ExceptionHandler(CountryNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public final ResponseEntity<Object> handleProvinceNotFoundException(
+            CountryNotFoundException exception) {
+
+        Set<String> result = new HashSet<>();
+        result.add(String.format("Country %s not found ", exception.getCountryCode()));
+
+        ResponseDTO<Object> responseDTO = new ResponseDTO<>();
+        responseDTO.setErrors(result);
+
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
+
+    }
+
+
 }

@@ -12,6 +12,7 @@ import address.capture.repositories.ProvinceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,15 +47,10 @@ public class AddressService {
         throw new AddressNotFoundException(addressId);
     }
 
+
     public CustomerAddress createAddress(Address address) {
 
         var entity = modelMapper.map(address, AddressEntity.class);
-        var province = provinceRepository.findFirstByCountryCodeAndProvinceCode(address.getCountryCode(), address.getProvinceCode());
-
-        if (province.isEmpty())
-            throw new ProvinceNotFoundException(address.getCountryCode(), address.getProvinceCode());
-
-        entity.setProvince(province.get(0));
 
         var country = countryRepository.findById(address.getCountryCode());
 
@@ -63,10 +59,19 @@ public class AddressService {
 
         entity.setCountry(country.get());
 
+        var province = provinceRepository.findFirstByCountryCodeAndProvinceCode(address.getCountryCode(), address.getProvinceCode());
+
+        if (province.isEmpty())
+            throw new ProvinceNotFoundException(address.getCountryCode(), address.getProvinceCode());
+
+        entity.setProvince(province.get(0));
+
         entity = addressRepository.save(entity);
 
         return modelMapper.map(entity, CustomerAddress.class);
+
     }
+
 
     public CustomerAddress findAddress(int addressId) {
         var address = addressRepository.findById(addressId);
