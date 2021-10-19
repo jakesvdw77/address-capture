@@ -12,11 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Province
 {
-    public Province(String countryCode, String provinceCode)
-    {
-        this.countryCode = countryCode;
-        this.provinceCode = provinceCode;
-    }
 
     @Id
     @Column(name = "country_code")

@@ -35,23 +35,7 @@ public class AddressService {
         this.modelMapper = modelMapper;
     }
 
-    public CustomerAddress updateAddress(Address address, int addressId) {
-
-        if (addressRepository.findById(addressId).isPresent()) {
-            var entity = modelMapper.map(address, AddressEntity.class);
-            entity.setAddressId(addressId);
-
-            addressRepository.save(entity);
-        }
-
-        throw new AddressNotFoundException(addressId);
-    }
-
-
-    public CustomerAddress createAddress(Address address) {
-
-        var entity = modelMapper.map(address, AddressEntity.class);
-
+    private AddressEntity setAddressInfo(Address address, AddressEntity entity) {
         var country = countryRepository.findById(address.getCountryCode());
 
         if (country.isEmpty())
@@ -65,13 +49,41 @@ public class AddressService {
             throw new ProvinceNotFoundException(address.getCountryCode(), address.getProvinceCode());
 
         entity.setProvince(province.get(0));
-
         entity = addressRepository.save(entity);
+        return entity;
 
+    }
+
+    public CustomerAddress updateAddress(Address address, int addressId) {
+
+        if (addressRepository.findById(addressId).isPresent()) {
+            var entity = modelMapper.map(address, AddressEntity.class);
+            entity.setAddressId(addressId);
+            entity = setAddressInfo(address, entity);
+            return modelMapper.map(entity, CustomerAddress.class);
+        }
+
+        throw new AddressNotFoundException(addressId);
+    }
+
+
+    public CustomerAddress createAddress(Address address) {
+
+        var entity = modelMapper.map(address, AddressEntity.class);
+        entity = setAddressInfo(address, entity);
         return modelMapper.map(entity, CustomerAddress.class);
 
     }
 
+    public void deleteAddress(int addressId) {
+        var address = addressRepository.findById(addressId);
+
+        if (address.isEmpty()) {
+            throw new AddressNotFoundException(addressId);
+        }
+        addressRepository.delete(address.get());
+
+    }
 
     public CustomerAddress findAddress(int addressId) {
         var address = addressRepository.findById(addressId);

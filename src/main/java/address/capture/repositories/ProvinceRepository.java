@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface ProvinceRepository extends JpaRepository<Province, String> {
 
-
     List<Province> findFirstByCountryCodeAndProvinceCode(String country , String province);
+
+    List<Province> findAllByCountryCode(String countryCode);
 }
+

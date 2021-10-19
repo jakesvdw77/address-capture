@@ -32,6 +32,6 @@ public class AddressEntity {
 
     @OneToOne
     @JoinColumn(name = "country_code", nullable = false, insertable = false, updatable = false)
-    private Country country;
+    private CountryEntity country;
 
 }

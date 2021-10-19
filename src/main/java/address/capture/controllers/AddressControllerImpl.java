@@ -52,4 +52,13 @@ public class AddressControllerImpl implements AddressControllerInterface {
 
     }
 
+    @Override
+    public ResponseEntity<ResponseDTO<Integer>> deleteCustomerAddress(Integer addressId) {
+
+        addressService.deleteAddress(addressId);
+
+        var responseBody = new ResponseDTO<>(null, addressId);
+        return ResponseEntity.ok(responseBody);
+    }
+
 }

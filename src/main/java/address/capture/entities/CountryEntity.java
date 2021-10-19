@@ -6,19 +6,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class Country {
+@Table(name = "country")
+public class CountryEntity {
     @Id
     @Column(name = "country_code")
     private String countryCode;
     @Column(name = "country_name")
     private String countryName;
 
-    public Country(String countryCode) {
-        this.countryCode = countryCode;
-    }
 
 }
