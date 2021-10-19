@@ -12,7 +12,6 @@ import address.capture.repositories.ProvinceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,7 +72,7 @@ public class AddressService {
         var address = addressRepository.findById(addressId);
 
         if (address.isPresent()) {
-            return modelMapper.map(address, CustomerAddress.class);
+            return modelMapper.map(address.get(), CustomerAddress.class);
         }
 
         throw new AddressNotFoundException(addressId);
