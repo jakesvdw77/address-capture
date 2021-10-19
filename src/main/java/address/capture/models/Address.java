@@ -1,7 +1,5 @@
 package address.capture.models;
 
-import address.capture.entities.Province;
-import address.capture.entities.Country;
 import lombok.Data;
 
 @Data
@@ -11,8 +9,12 @@ public class Address {
 
     private String line2;
 
-    private Province province;
+    private String suburb;
 
-    private Country country;
+    private String city;
+
+    private String provinceCode;
+
+    private String countryCode;
 
 }

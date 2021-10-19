@@ -9,5 +9,5 @@ public class ProvinceId implements Serializable {
 
     private String countryCode;
 
-    private int provinceCode;
+    private String provinceCode;
 }

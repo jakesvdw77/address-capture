@@ -6,9 +6,9 @@ import lombok.Data;
 public class Province
 {
 
-    private int countryCode;
+    private String countryCode;
 
-    private int provinceCode;
+    private String provinceCode;
 
-    private String name;
+    private String provinceName;
 }

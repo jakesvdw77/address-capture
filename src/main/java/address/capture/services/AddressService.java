@@ -2,9 +2,13 @@ package address.capture.services;
 
 import address.capture.entities.AddressEntity;
 import address.capture.exceptions.AddressNotFoundException;
+import address.capture.exceptions.CountryNotFoundException;
+import address.capture.exceptions.ProvinceNotFoundException;
 import address.capture.models.Address;
 import address.capture.models.CustomerAddress;
 import address.capture.repositories.AddressRepository;
+import address.capture.repositories.CountryRepository;
+import address.capture.repositories.ProvinceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,16 +22,22 @@ public class AddressService {
 
     protected final AddressRepository addressRepository;
 
+    protected final ProvinceRepository provinceRepository;
+
+    protected final CountryRepository countryRepository;
+
     protected final ModelMapper modelMapper;
 
-    public AddressService(AddressRepository addressRepository, ModelMapper modelMapper) {
+    public AddressService(AddressRepository addressRepository, ProvinceRepository provinceRepository, CountryRepository countryRepository, ModelMapper modelMapper) {
         this.addressRepository = addressRepository;
+        this.provinceRepository = provinceRepository;
+        this.countryRepository = countryRepository;
         this.modelMapper = modelMapper;
     }
 
     public CustomerAddress updateAddress(Address address, int addressId) {
 
-        if(addressRepository.findById(addressId).isPresent()) {
+        if (addressRepository.findById(addressId).isPresent()) {
             var entity = modelMapper.map(address, AddressEntity.class);
             entity.setAddressId(addressId);
 
@@ -38,8 +48,24 @@ public class AddressService {
     }
 
     public CustomerAddress createAddress(Address address) {
+
         var entity = modelMapper.map(address, AddressEntity.class);
+        var province = provinceRepository.findFirstByCountryCodeAndProvinceCode(address.getCountryCode(), address.getProvinceCode());
+
+        if (province.isEmpty())
+            throw new ProvinceNotFoundException(address.getCountryCode(), address.getProvinceCode());
+
+        entity.setProvince(province.get(0));
+
+        var country = countryRepository.findById(address.getCountryCode());
+
+        if (country.isEmpty())
+            throw new CountryNotFoundException(address.getCountryCode());
+
+        entity.setCountry(country.get());
+
         entity = addressRepository.save(entity);
+
         return modelMapper.map(entity, CustomerAddress.class);
     }
 

@@ -1,11 +1,13 @@
 package address.capture.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-//@Data
-//@Table(name = "province")
-//@Entity
-//@IdClass(ProvinceId.class)
+@Data
+@Table(name = "province")
+@Entity
+@IdClass(ProvinceId.class)
 public class Province
 {
 
@@ -15,8 +17,9 @@ public class Province
 
     @Id
     @Column(name = "province_code")
-    private int provinceCode;
+    private String provinceCode;
 
-    private String name;
+    @Column(name = "province_name")
+    private String provinceName;
 
 }
