@@ -27,11 +27,12 @@ public class AddressService {
 
     public CustomerAddress updateAddress(Address address, int addressId) {
 
-//        var address = addressRepository.findById(addressId);
-//
-//        if (address.isPresent()) {
-//            return modelMapper.map(address, CustomerAddress.class);
-//        }
+        if(addressRepository.findById(addressId).isPresent()) {
+            var entity = modelMapper.map(address, AddressEntity.class);
+            entity.setAddressId(addressId);
+
+            addressRepository.save(entity);
+        }
 
         throw new AddressNotFoundException(addressId);
     }
