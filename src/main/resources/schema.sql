@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS country;
 
 CREATE TABLE country (
 
-    country_code INT NOT NULL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
+    country_code CHAR (2)  NOT NULL PRIMARY KEY,
+    country_name VARCHAR(100) NOT NULL
 );
 
 
@@ -11,9 +11,9 @@ DROP TABLE IF EXISTS province;
 
 
 CREATE TABLE province (
-            province_code INT NOT NULL,
-            country_code INT NOT NULL,
-            name VARCHAR(100) NOT NULL,
+            province_code VARCHAR (3) NOT NULL,
+            country_code CHAR (2) NOT NULL,
+            province_name VARCHAR(20) NOT NULL,
             PRIMARY KEY(province_code,country_code)
 );
 
@@ -25,10 +25,10 @@ CREATE TABLE address (
                          line1 VARCHAR(250) NULL,
                          line2 VARCHAR(250)  NULL,
                          city VARCHAR(250)  NULL,
-                         province INT NOT NULL ,
-                         country INT  NOT NULL,
-                         FOREIGN KEY(province,country) REFERENCES province(province_code,country_code),
-                         FOREIGN KEY(country) REFERENCES country(country_code)
+                         province_code VARCHAR (3) NOT NULL ,
+                         country_code CHAR (2) NOT NULL,
+                         FOREIGN KEY(province_code,country_code) REFERENCES province(province_code,country_code),
+                         FOREIGN KEY(country_code) REFERENCES country(country_code)
 );
 
 

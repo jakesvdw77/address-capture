@@ -7,7 +7,7 @@ import java.io.Serializable;
 @Data
 public class ProvinceId implements Serializable {
 
-    private int countryCode;
+    private String countryCode;
 
     private int provinceCode;
 }

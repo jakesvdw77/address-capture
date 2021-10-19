@@ -11,7 +11,7 @@ public class Province
 
     @Id
     @Column(name = "country_code")
-    private int countryCode;
+    private String countryCode;
 
     @Id
     @Column(name = "province_code")

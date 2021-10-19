@@ -9,8 +9,8 @@ public class Country
 {
     @Id
     @Column(name = "country_code")
-    private int countryCode;
+    private String countryCode;
 
-    private String name;
+    private String countryName;
 
 }
