@@ -3,6 +3,8 @@ package address.capture.services;
 import address.capture.entities.AddressEntity;
 import address.capture.entities.CountryEntity;
 import address.capture.entities.ProvinceEntity;
+import address.capture.exceptions.CountryNotFoundException;
+import address.capture.exceptions.ProvinceNotFoundException;
 import address.capture.models.Address;
 import address.capture.models.Country;
 import address.capture.models.CustomerAddress;
@@ -51,6 +53,10 @@ class AddressServiceTest {
 
     private Address address;
 
+    private CustomerAddress customerAddress;
+
+    private AddressEntity entity;
+
     @BeforeEach
     void setup() {
 
@@ -62,7 +68,7 @@ class AddressServiceTest {
         address.setCountryCode("ZA");
         address.setProvinceCode("GP");
 
-        CustomerAddress customerAddress = new CustomerAddress();
+        customerAddress = new CustomerAddress();
         customerAddress.setAddressId(1);
         customerAddress.setCity("Pretoria");
         customerAddress.setSuburb("Waterkloof");
@@ -72,7 +78,7 @@ class AddressServiceTest {
         customerAddress.setProvince(new Province("ZA", "GP", "Gauteng"));
 
 
-        AddressEntity entity = new AddressEntity();
+        entity = new AddressEntity();
         entity.setAddressId(1);
         entity.setAddressId(1);
         entity.setCity("Pretoria");
@@ -93,6 +99,8 @@ class AddressServiceTest {
 
         when(provinceRepository.findFirstByCountryCodeAndProvinceCode("ZA", "GP")).thenReturn(entities);
 
+        when(addressRepository.findById(1)).thenReturn(Optional.of(entity));
+
         when(addressRepository.save(any())).thenReturn(entity);
 
     }
@@ -109,32 +117,74 @@ class AddressServiceTest {
     }
 
     @Test
-    void testCountryNotFound() {
+    void testCreateCountryNotFound() {
+        Exception error = null;
+        try {
+            address.setCountryCode(null);
+            addressService.createAddress(address);
+        } catch (CountryNotFoundException err) {
+            error = err;
+        }
+
+        assertNotNull(error);
 
     }
 
     @Test
-    void testProvinceNotFound() {
+    void testCreateProvinceNotFound() {
+
+        Exception error = null;
+        try {
+            address.setProvinceCode(null);
+            addressService.createAddress(address);
+        } catch (ProvinceNotFoundException err) {
+            error = err;
+        }
+
+        assertNotNull(error);
 
     }
+
+
+    @Test
+    void testUpdateCountryNotFound() {
+        Exception error = null;
+        try {
+            address.setCountryCode(null);
+            addressService.updateAddress(address, 1);
+        } catch (CountryNotFoundException err) {
+            error = err;
+        }
+
+        assertNotNull(error);
+
+    }
+
+    @Test
+    void testUpdateProvinceNotFound() {
+
+        Exception error = null;
+        try {
+            address.setProvinceCode(null);
+            addressService.updateAddress(address, 1);
+        } catch (ProvinceNotFoundException err) {
+            error = err;
+        }
+
+        assertNotNull(error);
+
+    }
+
 
     @Test
     void testUpdateAddress() {
 
-    }
+        address.setCity("New City");
+        customerAddress.setCity("New City");
 
-    @Test
-    void testDeleteAddress() {
+        var result = addressService.updateAddress(address, 1);
 
-    }
-
-    @Test
-    void testFindAddress() {
-
-    }
-
-    @Test
-    void listAddresses() {
+        assertEquals("New City", result.getCity());
 
     }
 

@@ -24,3 +24,29 @@ INSERT INTO province (country_code, province_code,province_name) VALUES
 ('ZA', 'FS','Free State');
 INSERT INTO province (country_code, province_code,province_name) VALUES
 ('ZA', 'GP','Gauteng');
+
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'NSW','New South Wales');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'V','Victoria');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'Q','Queensland');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'NT','Northern Territory');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'WC','Western Australia');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'SA','South Australia');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'ACT','Australian Capital Territory,');
+
+INSERT INTO province (country_code, province_code,province_name) VALUES
+    ('AU', 'T','Tasmania,');
+

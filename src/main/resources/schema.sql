@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS province;
 CREATE TABLE province (
             province_code VARCHAR (3) NOT NULL,
             country_code CHAR (2) NOT NULL,
-            province_name VARCHAR(20) NOT NULL,
+            province_name VARCHAR(50) NOT NULL,
             PRIMARY KEY(province_code,country_code)
 );
 
@@ -28,6 +28,7 @@ CREATE TABLE address (
                          suburb VARCHAR(100)  NULL,
                          province_code VARCHAR (3)  ,
                          country_code CHAR (2) NOT NULL,
+                         postal_code VARCHAR(7) NOT NULL,
                          FOREIGN KEY(province_code,country_code) REFERENCES province(province_code,country_code),
                          FOREIGN KEY(country_code) REFERENCES country(country_code)
 );

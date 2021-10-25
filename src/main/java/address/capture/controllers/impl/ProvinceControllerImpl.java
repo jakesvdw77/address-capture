@@ -4,12 +4,13 @@ import address.capture.controllers.ProvinceControllerInterface;
 import address.capture.models.Province;
 import address.capture.models.ResponseDTO;
 import address.capture.services.ProvinceService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@Slf4j
 @RestController
 public class ProvinceControllerImpl implements ProvinceControllerInterface {
 
@@ -22,6 +23,12 @@ public class ProvinceControllerImpl implements ProvinceControllerInterface {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Returns list of provinces for a provided countryCode
+     * Return Http 404 if country code is not found with CountryNotFoundException message
+     * @param countryCode
+     * @return
+     */
     @Override
     public ResponseEntity<ResponseDTO<List<Province>>> listProvinces(String countryCode) {
         var provinces = provinceService.listProvincesByCountry(countryCode);

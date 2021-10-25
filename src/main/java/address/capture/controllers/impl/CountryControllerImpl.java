@@ -18,6 +18,11 @@ public class CountryControllerImpl implements CountryControllerInterface {
         this.countryService = countryService;
     }
 
+    /**
+     * Returns sorted list of all countries
+     * @param sort
+     * @return
+     */
     @Override
     public ResponseEntity<ResponseDTO<List<Country>>> listCountries(String sort) {
 

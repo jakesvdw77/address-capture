@@ -19,4 +19,6 @@ public class CustomerAddress
 
     private Country country;
 
+    private String postalCode;
+
 }

@@ -21,13 +21,16 @@ import java.util.stream.Collectors;
 @Slf4j
 public class AddressServiceImpl implements AddressService {
 
+    private static final String FOUND_ADDRESS = "Found address %s";
+    private static final String DELETED_ADDRESS = "Deleted address %s";
+    private static final String CREATED_ADDRESS = "Created address %s";
+    private static final String UPDATED_ADDRESS = "Updated address %s";
+
     protected final AddressRepository addressRepository;
-
     protected final ProvinceRepository provinceRepository;
-
     protected final CountryRepository countryRepository;
-
     protected final ModelMapper modelMapper;
+
 
     public AddressServiceImpl(AddressRepository addressRepository, ProvinceRepository provinceRepository, CountryRepository countryRepository, ModelMapper modelMapper) {
         this.addressRepository = addressRepository;
@@ -58,9 +61,14 @@ public class AddressServiceImpl implements AddressService {
     public CustomerAddress updateAddress(Address address, int addressId) {
 
         if (addressRepository.findById(addressId).isPresent()) {
+
+            log.debug(String.format(FOUND_ADDRESS, addressId));
             var entity = modelMapper.map(address, AddressEntity.class);
             entity.setAddressId(addressId);
             entity = setAddressInfo(address, entity);
+
+            log.info(UPDATED_ADDRESS, entity.getAddressId());
+
             return modelMapper.map(entity, CustomerAddress.class);
         }
 
@@ -72,6 +80,8 @@ public class AddressServiceImpl implements AddressService {
 
         var entity = modelMapper.map(address, AddressEntity.class);
         entity = setAddressInfo(address, entity);
+
+        log.info(CREATED_ADDRESS, entity.getAddressId());
         return modelMapper.map(entity, CustomerAddress.class);
 
     }
@@ -82,7 +92,12 @@ public class AddressServiceImpl implements AddressService {
         if (address.isEmpty()) {
             throw new AddressNotFoundException(addressId);
         }
+
+        log.debug(String.format(FOUND_ADDRESS, addressId));
+
         addressRepository.delete(address.get());
+
+        log.info(String.format(DELETED_ADDRESS, addressId));
 
     }
 
@@ -90,6 +105,9 @@ public class AddressServiceImpl implements AddressService {
         var address = addressRepository.findById(addressId);
 
         if (address.isPresent()) {
+
+            log.info(String.format(FOUND_ADDRESS, addressId));
+
             return modelMapper.map(address.get(), CustomerAddress.class);
         }
 

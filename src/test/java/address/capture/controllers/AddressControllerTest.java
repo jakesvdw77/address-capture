@@ -81,8 +81,7 @@ class AddressControllerTest {
     }
 
     @Test
-    void testCreateAddress()
-    {
+    void testCreateAddress() {
 
         var response = addressController.createAddress(new Address());
         assertNotNull(response);
@@ -93,28 +92,13 @@ class AddressControllerTest {
 
 
     @Test
-    void testUpdateAddress()
-    {
-        var response = addressController.updateAddress(new Address(),1);
+    void testUpdateAddress() {
+        var response = addressController.updateAddress(new Address(), 1);
         assertNotNull(response);
         assertNotNull(response.getBody().getData());
         assertEquals(200, response.getStatusCode().value());
         assertEquals(1, response.getBody().getData().getAddressId());
     }
-
-
-    @Test
-    void testDeleteAddress()
-    {
-//        var response = addressController.deleteCustomerAddress(1);
-//        assertNotNull(response);
-//        assertNotNull(response.getBody().getData());
-//        assertEquals(200, response.getStatusCode().value());
-//        assertEquals(1, response.getBody().getData().getAddressId());
-    }
-
-
-
 
 
 }

@@ -17,4 +17,6 @@ public class Address {
 
     private String countryCode;
 
+    private String postalCode;
+
 }

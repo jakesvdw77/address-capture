@@ -21,11 +21,14 @@ public class GlobalExceptionHandler {
     public final ResponseEntity<Object> handleAddressNotFoundException(
             AddressNotFoundException exception) {
 
+        var error = String.format("Address %s not found", exception.getAddressId());
+
         Set<String> result = new HashSet<>();
-        result.add(String.format("Address %s not found", exception.getAddressId()));
+        result.add(error);
 
         ResponseDTO<Object> responseDTO = new ResponseDTO<>();
         responseDTO.setErrors(result);
+        log.error(error);
 
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
@@ -37,12 +40,14 @@ public class GlobalExceptionHandler {
     public final ResponseEntity<Object> handleProvinceNotFoundException(
             ProvinceNotFoundException exception) {
 
+        var error = String.format("Province %s not found for country code %s ", exception.getProvinceCode(), exception.getCountryCode());
+
         Set<String> result = new HashSet<>();
-        result.add(String.format("Province %s not found for country code %s ", exception.getProvinceCode(), exception.getCountryCode()));
+        result.add(error);
 
         ResponseDTO<Object> responseDTO = new ResponseDTO<>();
         responseDTO.setErrors(result);
-
+        log.error(error);
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
 
@@ -54,13 +59,16 @@ public class GlobalExceptionHandler {
     public final ResponseEntity<Object> handleProvinceNotFoundException(
             CountryNotFoundException exception) {
 
+        var error = String.format("Country %s not found ", exception.getCountryCode());
+
+
         Set<String> result = new HashSet<>();
-        result.add(String.format("Country %s not found ", exception.getCountryCode()));
+        result.add(error);
 
         ResponseDTO<Object> responseDTO = new ResponseDTO<>();
         responseDTO.setErrors(result);
 
-
+        log.error(error);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
 
     }

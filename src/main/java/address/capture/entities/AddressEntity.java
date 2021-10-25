@@ -21,6 +21,9 @@ public class AddressEntity {
 
     private String city;
 
+    @Column(name = "postal_code")
+    private String postalCode;
+
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumns(value = {

@@ -17,7 +17,7 @@ import java.util.List;
 public interface ProvinceControllerInterface {
 
     @Operation(description = "Find list of provinces for specified country")
-    @GetMapping("/list")
+    @GetMapping("/country/{countryCode}/list")
     ResponseEntity<ResponseDTO<List<Province>>> listProvinces(@PathVariable String countryCode);
 
 
