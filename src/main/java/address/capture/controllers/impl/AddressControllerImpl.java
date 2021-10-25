@@ -38,7 +38,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
 
     /**
      * Updates an existing address
-     * If address is not found returns 404 with AddressNotFoundException
+     * If address is not found returns Http 404 error with AddressNotFoundException
      *
      * @param request
      * @param addressId
@@ -57,7 +57,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
 
     /**
      * Find the address from the addressId
-     * If address is not found returns 404 error with Address not found message
+     * If address is not found returns Http 404 error with Address not found message
      *
      * @param addressId
      * @return
@@ -91,7 +91,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
 
     /**
      * Delete  address
-     * If address is not found returns 404 error with Address not found message
+     * If address is not found returns Http 404 error with Address not found message
      *
      * @param addressId
      * @return
