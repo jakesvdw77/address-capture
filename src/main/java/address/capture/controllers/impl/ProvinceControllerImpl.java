@@ -7,11 +7,13 @@ import address.capture.services.ProvinceService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @Slf4j
 @RestController
+@CrossOrigin(maxAge = 3600)
 public class ProvinceControllerImpl implements ProvinceControllerInterface {
 
     protected final ProvinceService provinceService;

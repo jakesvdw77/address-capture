@@ -13,22 +13,25 @@ public class AddressEntity {
     @Column(name = "address_id")
     private int addressId;
 
+    @Column(name = "line1" , nullable = false)
     private String line1;
 
     private String line2;
 
     private String suburb;
 
+    @Column(name = "city" , nullable = false)
     private String city;
 
-    @Column(name = "postal_code")
+
+    @Column(name = "postal_code", nullable = false)
     private String postalCode;
 
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumns(value = {
-            @JoinColumn(name = "province_code", referencedColumnName = "province_code"),
-            @JoinColumn(name = "country_code", referencedColumnName = "country_code")
+            @JoinColumn(name = "province_code", referencedColumnName = "province_code", nullable = false),
+            @JoinColumn(name = "country_code", referencedColumnName = "country_code", nullable = false)
     })
     private ProvinceEntity province;
 

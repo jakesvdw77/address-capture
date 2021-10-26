@@ -7,11 +7,15 @@ import address.capture.models.ResponseDTO;
 import address.capture.services.AddressService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
+@CrossOrigin(maxAge = 3600)
 @Slf4j
 public class AddressControllerImpl implements AddressControllerInterface {
 
@@ -28,7 +32,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
      * @return
      */
     @Override
-    public ResponseEntity<ResponseDTO<CustomerAddress>> createAddress(Address request) {
+    public ResponseEntity<ResponseDTO<CustomerAddress>> createAddress(@Valid Address request) {
         // Http Errors are handled in the GlobalException Handler
         log.info("createAddress ", request);
         var response = addressService.createAddress(request);
@@ -45,7 +49,7 @@ public class AddressControllerImpl implements AddressControllerInterface {
      * @return
      */
     @Override
-    public ResponseEntity<ResponseDTO<CustomerAddress>> updateAddress(Address request, Integer addressId) {
+    public ResponseEntity<ResponseDTO<CustomerAddress>> updateAddress(@Valid Address request, Integer addressId) {
 
         log.info("updateAddress ", request);
 

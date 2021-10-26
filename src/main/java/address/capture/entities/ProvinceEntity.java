@@ -16,14 +16,14 @@ public class ProvinceEntity
 {
 
     @Id
-    @Column(name = "country_code")
+    @Column(name = "country_code", nullable = false)
     private String countryCode;
 
     @Id
-    @Column(name = "province_code")
+    @Column(name = "province_code", nullable = false)
     private String provinceCode;
 
-    @Column(name = "province_name")
+    @Column(name = "province_name", nullable = false)
     private String provinceName;
 
 }

@@ -16,9 +16,9 @@ import javax.persistence.Table;
 @Table(name = "country")
 public class CountryEntity {
     @Id
-    @Column(name = "country_code")
+    @Column(name = "country_code" , nullable = false)
     private String countryCode;
-    @Column(name = "country_name")
+    @Column(name = "country_name", nullable = false)
     private String countryName;
 
 

@@ -16,6 +16,24 @@ import java.util.Set;
 @ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<Object> handleDefaultException(Exception exception) {
+
+        log.error(exception.toString());
+
+        Set<String> result = new HashSet<>();
+
+        if (exception.getMessage() != null)
+            result.add(exception.getMessage());
+
+        ResponseDTO<Object> responseDTO = new ResponseDTO<>();
+        responseDTO.setErrors(result);
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).build();
+    }
+
+
     @ExceptionHandler(AddressNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public final ResponseEntity<Object> handleAddressNotFoundException(
@@ -49,7 +67,7 @@ public class GlobalExceptionHandler {
         responseDTO.setErrors(result);
         log.error(error);
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
 
     }
 
@@ -69,7 +87,7 @@ public class GlobalExceptionHandler {
         responseDTO.setErrors(result);
 
         log.error(error);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(responseDTO);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(responseDTO);
 
     }
 
