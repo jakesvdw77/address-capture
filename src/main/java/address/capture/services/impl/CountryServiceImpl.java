@@ -23,6 +23,12 @@ public class CountryServiceImpl implements CountryService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * List of all available countries
+     * @param sort
+     * @return
+     */
+
     public List<Country> listCountries(String sort) {
 
         Sort.Direction direction = sort != null && sort.equals("desc") ? Sort.Direction.DESC : Sort.Direction.ASC;

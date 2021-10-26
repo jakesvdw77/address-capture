@@ -39,6 +39,14 @@ public class AddressServiceImpl implements AddressService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * Set teh address info
+     * Throws CountryNotFoundException if country code is not valid
+     * Throws ProvinceNotFoundException if the province code is not valid.
+     * @param address
+     * @param entity
+     * @return
+     */
     private AddressEntity setAddressInfo(Address address, AddressEntity entity) {
         var country = countryRepository.findById(address.getCountryCode());
 
@@ -58,6 +66,13 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
+    /**
+     * Update Existing address
+     * Throws AddressNotFoundException if address is not found exception
+     * @param address
+     * @param addressId
+     * @return
+     */
     public CustomerAddress updateAddress(Address address, int addressId) {
 
         if (addressRepository.findById(addressId).isPresent()) {
@@ -76,6 +91,11 @@ public class AddressServiceImpl implements AddressService {
     }
 
 
+    /**
+     * Creates an address
+     * @param address
+     * @return
+     */
     public CustomerAddress createAddress(Address address) {
 
         var entity = modelMapper.map(address, AddressEntity.class);
@@ -86,6 +106,11 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
+    /**
+     * Delete an address
+     * Throws AddressNotFoundException if addressId is not found
+     * @param addressId
+     */
     public void deleteAddress(int addressId) {
         var address = addressRepository.findById(addressId);
 
@@ -101,6 +126,12 @@ public class AddressServiceImpl implements AddressService {
 
     }
 
+    /**
+     * Find an address from provided addressId
+     * Throws Address not found exception when not valid addressId
+     * @param addressId
+     * @return
+     */
     public CustomerAddress findAddress(int addressId) {
         var address = addressRepository.findById(addressId);
 
@@ -114,6 +145,10 @@ public class AddressServiceImpl implements AddressService {
         throw new AddressNotFoundException(addressId);
     }
 
+    /**
+     * List all available addresses
+     * @return
+     */
     public List<CustomerAddress> listAddresses() {
         var addressStream = addressRepository.findAll();
 

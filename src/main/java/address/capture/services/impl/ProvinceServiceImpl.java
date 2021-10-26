@@ -6,7 +6,6 @@ import address.capture.services.ProvinceService;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +21,14 @@ public class ProvinceServiceImpl implements ProvinceService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * List of all available countries
+     *
+     * @param sort default value "asc" for ascending , desc for descending sort
+     * @return
+     */
     public List<Province> listProvincesByCountry(String countryCode) {
         var provinces = provinceRepository.findAllByCountryCode(countryCode);
-
 
         log.info(String.format("%s Provinces found for country code %s", provinces.size(), countryCode));
 
